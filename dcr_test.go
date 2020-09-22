@@ -57,7 +57,7 @@ func TestDNSCache(t *testing.T) {
 		count += 1
 	}
 	if len(addrs) == count {
-		t.Fatalf("unable to match any IP from %v to url %s\n", addrs, rurl)
+		t.Fatalf("unable to match any IP from %v to url %s count %d\n", addrs, rurl, count)
 	}
 	fmt.Println("DNSCache", mgr.String())
 	// this time we should see update call
