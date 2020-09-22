@@ -103,7 +103,7 @@ func GetHostname(rurl string) string {
 	return strings.Replace(arr[0], "/", "", -1)
 }
 
-// ResovleHost helper function to resolve given Host name into set of IP addresses
+// ResolveHost helper function to resolve given Host name into set of IP addresses
 func ResolveHost(host string) ([]string, error) {
 	var out []string
 	addrs, err := net.LookupIP(host)
