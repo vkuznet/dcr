@@ -1,4 +1,9 @@
 ### DNS Cache Resolver (dcr)
+
+[![Build Status](https://travis-ci.org/vkuznet/dcr.svg?branch=master)](https://travis-ci.org/vkuznet/dcr)
+[![Go Report Card](https://goreportcard.com/badge/github.com/vkuznet/dcr)](https://goreportcard.com/report/github.com/vkuznet/dcr)
+[![GoDoc](https://godoc.org/github.com/vkuznet/dcr?status.svg)](https://godoc.org/github.com/vkuznet/dcr)
+
 dcr is a simple library to resolve and cache URLs from hostbased naming
 convention to IP based one. For instance, if you have an URL like
 `http://www.google.com` and would like to resolve it into IP based URL
