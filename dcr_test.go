@@ -9,7 +9,7 @@ import (
 
 // TestGetIPs function
 func TestGetIPs(t *testing.T) {
-	host := "www.google.com"
+	host := "www.yahoo.com"
 	rurl := fmt.Sprintf("http://%s/", host)
 	rhost := GetHostname(rurl)
 	if rhost != host {
@@ -27,7 +27,7 @@ func TestGetIPs(t *testing.T) {
 
 // TestResolveHost function
 func TestResolveHost(t *testing.T) {
-	host := "www.google.com"
+	host := "www.yahoo.com"
 	ips, err := ResolveHost(host)
 	if err != nil {
 		t.Fatalf("ResolveHost error %v\n", err)
@@ -42,7 +42,7 @@ func TestResolveHost(t *testing.T) {
 // TestDNSCache resolver function
 func TestDNSCache(t *testing.T) {
 	mgr := NewDNSManager(1)
-	host := "www.google.com"
+	host := "www.yahoo.com"
 	rurl := fmt.Sprintf("http://%s/", host)
 	ipUrl := mgr.Resolve(rurl)
 	addrs, err := net.LookupIP(host)
