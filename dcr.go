@@ -58,7 +58,7 @@ func (d *DNSManager) update() {
 		d.Cache = make(DNSCache)
 	}
 	rand.Seed(12345)
-	for r, _ := range d.Cache {
+	for r := range d.Cache {
 		d.Cache[r] = GetIPs(r)
 	}
 	log.Println("update DNSManager", d.String())
@@ -74,7 +74,7 @@ func NewDNSManager(renew ...int64) *DNSManager {
 	return &dcr
 }
 
-//helper function to resolve
+// GetIPs helper function to resolve url hostname into IP
 func GetIPs(rurl string) []string {
 	var urls []string
 	host := GetHostname(rurl)
@@ -91,7 +91,7 @@ func GetIPs(rurl string) []string {
 	return urls
 }
 
-// helper function to extract hostname from given url
+// GetHostname helper function to extract hostname from given url
 func GetHostname(rurl string) string {
 	var path string
 	if strings.Contains(rurl, "https://") {
@@ -103,7 +103,7 @@ func GetHostname(rurl string) string {
 	return strings.Replace(arr[0], "/", "", -1)
 }
 
-// helper function to resolve given Host name into set of IP addresses
+// ResovleHost helper function to resolve given Host name into set of IP addresses
 func ResolveHost(host string) ([]string, error) {
 	var out []string
 	addrs, err := net.LookupIP(host)
