@@ -62,9 +62,10 @@ func TestDNSCache(t *testing.T) {
 	fmt.Println("DNSCache", mgr.String())
 	// this time we should see update call
 	ipUrl = mgr.Resolve(rurl)
-	fmt.Println("no update call, url", rurl)
+	fmt.Println("no update call", rurl, ipUrl)
 	// let's clear up TTL
 	mgr.TTL = 0
 	// this time we'll see the update call
 	ipUrl = mgr.Resolve(rurl)
+	fmt.Println("update call", rurl, ipUrl)
 }
