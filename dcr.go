@@ -61,17 +61,16 @@ func (d *DNSManager) update() {
 	for r := range d.Cache {
 		d.Cache[r] = GetIPs(r)
 	}
-	log.Println("update DNSManager", d.String())
 	d.TTL = time.Now().Unix() + d.RenewInterval
 }
 
 // NewDNSManager method properly initialize DNSManager
 func NewDNSManager(renew ...int64) *DNSManager {
-	dcr := DNSManager{RenewInterval: 10} // by default renew cache every 10 seconds
+	dcr := &DNSManager{RenewInterval: 10} // by default renew cache every 10 seconds
 	if len(renew) > 0 {
 		dcr.RenewInterval = renew[0]
 	}
-	return &dcr
+	return dcr
 }
 
 // GetIPs helper function to resolve url hostname into IP
