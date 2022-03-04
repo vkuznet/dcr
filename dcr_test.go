@@ -10,7 +10,7 @@ import (
 // TestGetIPs function
 func TestGetIPs(t *testing.T) {
 	host := "www.yahoo.com"
-	rurl := fmt.Sprintf("http://%s/", host)
+	rurl := fmt.Sprintf("http://%s:80/", host)
 	rhost := GetHostname(rurl)
 	if rhost != host {
 		t.Fatalf("unable to get hostname, rhost=%s host=%s\n", rhost, host)

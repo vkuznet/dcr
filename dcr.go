@@ -80,7 +80,7 @@ func GetIPs(rurl string) []string {
 	ips, err := ResolveHost(host)
 	if err != nil {
 		// in case of error we'll use host name itself
-		log.Printf("unable to resolve host %s, error %v\n", host, err)
+		log.Printf("dcr: unable to resolve host %s, error %v\n", host, err)
 		urls = append(urls, rurl)
 	} else {
 		for _, ip := range ips {
@@ -99,6 +99,10 @@ func GetHostname(rurl string) string {
 		path = strings.Split(rurl, "http://")[1]
 	}
 	arr := strings.Split(path, "/")
+	if strings.Contains(arr[0], ":") {
+		a := strings.Split(arr[0], ":")
+		arr[0] = a[0]
+	}
 	return strings.Replace(arr[0], "/", "", -1)
 }
 
@@ -107,7 +111,7 @@ func ResolveHost(host string) ([]string, error) {
 	var out []string
 	addrs, err := net.LookupIP(host)
 	if err != nil {
-		log.Printf("Unable to resolve host %s into IP addresses, error %v\n", host, err)
+		log.Printf("dcr: unable to resolve host %s into IP addresses, error %v\n", host, err)
 		return out, err
 	}
 	for _, addr := range addrs {
