@@ -7,6 +7,7 @@ import (
 	"math/rand"
 	"net"
 	"strings"
+	"sync"
 	"time"
 )
 
@@ -42,6 +43,9 @@ func (d *DNSManager) Resolve(rurl string) string {
 	if d.TTL < time.Now().Unix() {
 		d.update()
 	}
+	var lock = sync.Mutex{}
+	lock.Lock()
+	defer lock.Unlock()
 	if vals, ok := d.Cache[rurl]; ok {
 		idx := rand.Intn(len(vals))
 		return vals[idx]
@@ -58,6 +62,9 @@ func (d *DNSManager) update() {
 		d.Cache = make(DNSCache)
 	}
 	rand.Seed(12345)
+	var lock = sync.Mutex{}
+	lock.Lock()
+	defer lock.Unlock()
 	for r := range d.Cache {
 		d.Cache[r] = GetIPs(r)
 	}
